@@ -1,0 +1,73 @@
+.login-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .title{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 30px;
+  }
+  .text{
+    font-weight: 600;
+    padding-bottom: 3px;
+  }
+    input[type="text"] {
+    padding: 5px;
+    outline: none;
+    margin-top: 7px;
+    :hover {
+        background-color: #dedede;
+    }
+  }
+  .button{
+    padding: 10px;
+    border-radius: 3px;
+    outline: none;
+  }
+  .quen-mat-khau{
+    text-align: right;
+  }
+  .dang-ky{
+    text-align: left;
+    font-size: 12px;
+  }
+     
+  .message {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.success {
+    background-color: #4BB543;
+}
+
+.error {
+    background-color: #FF6347;
+}
+  
+
+/* //dang  ki */
+.alert {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}

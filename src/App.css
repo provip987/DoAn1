@@ -1,0 +1,452 @@
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+  }
+}
+.App {
+  text-align: center;
+}
+
+img, svg {
+  height: 150PX;
+  vertical-align: middle;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.d-block {
+  display: block!important;
+  height: 100px;
+}
+.gia {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: rgb(0, 139, 46);
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/*card*/
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 90%;
+  height: 300px;
+  
+  text-align: center;
+  font-family: arial;
+  box-sizing: content-box;
+  padding: 20px;
+  border: 20px solid #000;
+  word-wrap: break-word;
+  margin:30px ;
+  
+
+
+ 
+
+}
+.card img{
+height: 100%;
+width: 100%;
+
+}
+.card-head h6{
+
+  font-size: 25px;
+  text-align:left;
+}
+.price p {
+  color: grey;
+  font-size: 20px;
+  text-align:right;
+margin-bottom: 5px;
+  
+}
+.card-head .title{
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: auto;
+  text-align: left;
+}
+
+.update {
+  width: 120px;
+height: 40px;
+  border: 1px solid rgb(8, 8, 8);
+  border-radius: 20px;
+padding: 5px 20px;
+
+}
+.add {
+ 
+  border: none;
+  border-radius: 20px;
+ width: 120px;
+ height: 40px;
+ font-size: 15px;
+ background-color: rgb(247, 46, 46);
+ color: white;
+
+
+}
+ 
+.App {
+  text-align: center;
+}
+
+img, svg {
+  height: 150PX;
+  vertical-align: middle;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.d-block {
+  display: block!important;
+  height: 100px;
+}
+.gia {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: rgb(0, 139, 46);
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/*card*/
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 90%;
+  height: 300px;
+  
+  text-align: center;
+  font-family: arial;
+  box-sizing: content-box;
+  padding: 20px;
+  border: 20px solid #000;
+  word-wrap: break-word;
+  margin:30px ;
+  
+
+
+ 
+
+}
+.card img{
+height: 100%;
+width: 100%;
+
+}
+.card-head h6{
+
+  font-size: 25px;
+  text-align:left;
+}
+.price p {
+  color: grey;
+  font-size: 20px;
+  text-align:right;
+margin-bottom: 5px;
+  
+}
+.card-head .title{
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: auto;
+  text-align: left;
+}
+
+.update {
+  width: 120px;
+height: 40px;
+  border: 1px solid rgb(8, 8, 8);
+  border-radius: 20px;
+padding: 5px 20px;
+
+}
+.add {
+ 
+  border: none;
+  border-radius: 20px;
+ width: 120px;
+ height: 40px;
+ font-size: 15px;
+ background-color: rgb(247, 46, 46);
+ color: white;
+
+
+}
+
+.shop{
+  background-color: pink;
+}
+.shopTitle {
+  padding-top: 70px;;
+  text-align: center;
+  font-size: 40px;
+}
+
+
+.products {
+  width: 100%; /* Chiều rộng 100% của parent container hoặc màn hình */
+  max-width: 1200px; /* Kích thước tối đa của container để tránh làm to quá mức */
+  margin: 0 auto; /* Canh giữa container */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+ 
+}
+
+.product {
+  border-radius: 15px;
+  width: 100%; /* Thay đổi kích thước thành 100% */
+  max-width: 300px; /* Giữ kích thước tối đa là 300px */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Căn giữa theo chiều dọc */
+  align-items: center;
+  background-color: #f9f9f9; /* Thêm màu nền */
+  padding: 20px; /* Thêm padding */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng */
+  transition: 0.3s ease-in;
+}
+
+
+.product img {
+  width: 100%; /* Kích thước hình ảnh là 100% của đối tượng cha */
+  max-width: 164px; /* Điều chỉnh chiều cao tối đa của hình ảnh */
+ 
+  object-fit: cover;  /* Đảm bảo tỷ lệ khung hình bảo toàn */
+  margin-bottom: 10px; /* Thêm khoảng cách dưới hình ảnh */
+}
+
+.product .description {
+  text-align: center;
+}
+
+.product:hover {
+  transform: scale(1.05); /* Thêm hiệu ứng phóng to khi hover */
+  cursor: pointer;
+}
+
+.addToCartBttn {
+  background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
+  min-width: 100px;
+  padding: 6px;
+  border-radius: 15px;
+  text-align: center; /* Canh giữa văn bản */
+}
+
+.addToCartBttn:hover {
+  background-color: rgb(19, 19, 19);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.horizontal-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+}
+
+.horizontal-list li {
+  flex: 0 0 calc(33.33% - 20px); /* Số liệu này phụ thuộc vào số lượng sản phẩm bạn muốn hiển thị trên mỗi dòng */
+  box-sizing: border-box;
+  border: 1px solid #ccc; /* Đường viền giữa các sản phẩm */
+  padding: 10px;
+  text-align: center;
+}
+   
+     
+/*kiemtra*/
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #6a11cb;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+  }
+  
+  /*tuy chinh*/
+  
+
+
+
+
+     
+  
+  
+/* DangKy.css */
+
+.registration-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.container.signin {
+  text-align: center;
+}
+
+.container.signin a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.container.signin a:hover {
+  color: #004080;
+}
+
+
+.bordered-text {
+  border: 0.1px solid #000;
+  display: 2px;
+  padding: 2%;
+}
+
+.small-text {
+  font-size: 20px; /* Điều chỉnh kích thước chữ tùy ý */
+}
+/* Thêm màu đỏ khi rê chuột vào .bordered-text */
+.bordered-text:hover {
+color: red;
+}
+
+/* Cũng thêm màu đỏ khi rê chuột vào .small-text */
+.small-text:hover {
+color: red;
+}
+
+
+/* 
+Khuyen mai lon */
+.ticker-wrap {
+  background-color: black; /* Màu nền của bạn */
+  color: rgb(245, 240, 240); /* Màu chữ của bạn */
+  overflow: hidden;
+  position: relative;
+  font-size: 20px;
+  white-space: nowrap;
+  padding: 5px 30px 35px; /* Giảm padding ở trên */
+}
+
+.ticker-move {
+  display: inline-block;
+  position: absolute;
+  white-space: nowrap;
+  animation:
+ticker 20s linear infinite;
+}
+
+@keyframes ticker {
+from {
+transform: translateX(100%);
+}
+to {
+transform: translateX(-100%);
+}
+}
+
+body{background-color: #000}.card{border:none}.product{background-color: #eee}.brand{font-size: 13px}.act-price{color:red;font-weight: 700}.dis-price{text-decoration: line-through}.about{font-size: 14px}.color{margin-bottom:10px}label.radio{cursor: pointer}label.radio input{position: absolute;top: 0;left: 0;visibility: hidden;pointer-events: none}label.radio span{padding: 2px 9px;border: 2px solid #ff0000;display: inline-block;color: #ff0000;border-radius: 3px;text-transform: uppercase}label.radio input:checked+span{border-color: #ff0000;background-color: #ff0000;color: #fff}.btn-danger{background-color: #ff0000 !important;border-color: #ff0000 !important}.btn-danger:hover{background-color: #da0606 !important;border-color: #da0606 !important}.btn-danger:focus{box-shadow: none}.cart i{margin-right: 10px}
