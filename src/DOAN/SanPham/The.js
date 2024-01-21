@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
@@ -12,7 +12,7 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
   const [sanphams, setSanphams] = useState([]);
   const [selectedSize, setSelectedSize] = useState(null);
   const location = useLocation();
-  useEffect(() => {
+    useEffect(() => {
     // Chỉ gọi API và hiển thị sản phẩm nếu đường dẫn là trang chủ
     if (location.pathname === '/') {
       axios
@@ -37,7 +37,21 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
   const handleAddToCart = (sanpham) => {
     addToCart(sanpham, selectedSize);
   };
-  
+
+  const addFavorites =  async (id) => {
+    console.log(id);
+      const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      };
+
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/add-favorite-product', {product_id: id}, config);
+        
+      } catch (error) {
+        console.error('Có lỗi xảy ra khi lấy thông tin người dùng', error);
+      }
+  };
+
   return (
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -87,6 +101,7 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
     Thêm
   </button>
                     <FontAwesomeIcon
+                      onClick={() => addFavorites(sanpham.id)}
                       icon={faHeart}
                       style={{ cursor: 'pointer', fontSize: '20px', color: 'gray-light', margin: '10px 0px 0px 5px' }}
                     />

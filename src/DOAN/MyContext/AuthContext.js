@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from 'react-router-dom';
 // Tạo một Context mới
 export const AuthContext = createContext({
   isLoggedIn: false,
@@ -12,10 +13,11 @@ export const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     // Kiểm tra localStorage hoặc gọi API để xác định trạng thái đăng nhập
     const token = localStorage.getItem('token');
+    setUser(token); 
     setIsLoggedIn(!!token);
   }, []);
 
@@ -24,7 +26,8 @@ export const AuthProvider = ({ children }) => {
   const login = (token, userData)=> {
     localStorage.setItem('token', token);
     setIsLoggedIn(true);
-    setUser(userData); // Lưu thông tin người dùng
+    //setUser(userData); // Lưu thông tin người dùng
+    setUser(token); 
   };
 
   // Hàm để "đăng xuất" người dùng
@@ -32,6 +35,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
     toast.success("Đăng xuất thành công!"); 
+    navigate('/login');
   };
 
   // Giá trị mà AuthContext sẽ cung cấp

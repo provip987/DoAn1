@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-
+import axiosInstance from '../http/axiosInstance';
+import { Link, useNavigate } from 'react-router-dom';
 const ThanhToan = ({ cartItems }) => {
   const [paymentSuccess, setPaymentSuccess] = useState(null);
   // Lọc ra các sản phẩm được chọn từ giỏ hàng
   const selectedItems = cartItems.filter((item) => item.isSelected);
-
+  const navigate = useNavigate();
   // Tính tổng giá trị đơn hàng của các sản phẩm được chọn
   const calculateTotalPrice = () => {
     return selectedItems.reduce((total, item) => total + item.gia_cu * item.quantity, 0);
@@ -26,8 +27,12 @@ const ThanhToan = ({ cartItems }) => {
     };
 
     try {
-      const response = await axios.post('/dat-hang', orderData);
+      const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      };
+      const response = await axiosInstance.post('http://127.0.0.1:8000/api/dat-hang', orderData, config);
       setPaymentSuccess(response.data.success);
+      navigate('/');
       // Handle success, maybe redirect or show a success message
     } catch (error) {
       console.error('Error making payment:', error.message);

@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../MyContext/AuthContext';
 import axios from 'axios';
-
+import axiosInstance from '../http/axiosInstance';
 const ChiTietTaiKhoan = () => {
   const { user } = useContext(AuthContext);
   const [chiTiet, setChiTiet] = useState(null);
@@ -16,8 +16,8 @@ const ChiTietTaiKhoan = () => {
         };
 
         try {
-          const response = await axios.get('http://127.0.0.1:8000/api/thong-tin-nguoi-dung', config);
-          setChiTiet(response.data.data);
+          const response = await axiosInstance.get('http://127.0.0.1:8000/api/khach-hang/thong-tin', config);
+          setChiTiet(response.data);
         } catch (error) {
           console.error('Có lỗi xảy ra khi lấy thông tin người dùng', error);
         }

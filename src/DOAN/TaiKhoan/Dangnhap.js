@@ -23,9 +23,9 @@ const Dangnhap = () => {
       // Nếu đăng nhập thành công, hiển thị thông báo nổi thành công
       if (response.status === 200) {
         toast.success('Đăng nhập thành công!');
-        login(response.data.token); // Cập nhật trạng thái đăng nhập
+        login(response.data.access_token); // Cập nhật trạng thái đăng nhập
         navigate('/');
-    }
+      };
     } catch (error) {
       // Nếu có lỗi, hiển thị thông báo nổi lỗi
       toast.error('Đăng nhập thất bại!');
