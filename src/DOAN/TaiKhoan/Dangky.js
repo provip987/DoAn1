@@ -36,6 +36,18 @@ const Dangky = () => {
         if (errors.ten_dang_nhap) {
           toast.error(errors.ten_dang_nhap[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
         }
+        if (errors.password) {
+          toast.error(errors.password[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
+        }
+        if (errors.email) {
+          toast.error(errors.email[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
+        }
+        if (errors.sdt) {
+          toast.error(errors.quyen_id[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
+        }
+        if (errors.quyen_id) {
+          toast.error(errors.sdt[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
+        }
         // Xử lý lỗi cho các trường dữ liệu khác
       } else {
         // Đăng ký thành công, hiển thị thông báo thành công
@@ -44,6 +56,7 @@ const Dangky = () => {
         navigate('/login');
       }
     } catch (error) {
+      
       // Xử lý lỗi từ API
       toast.error('Đăng ký thất bại!');
     }

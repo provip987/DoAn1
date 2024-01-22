@@ -29,9 +29,10 @@ import axiosInstance from '../http/axiosInstance';
         <div class="card col-5">
         <img class="card-img-top" src={`http://127.0.0.1:8000/${product.url}`} alt={product.ten_san_pham} />
         <div class="card-body">
-          <h4 class="card-title">{product.ten_san_pham}</h4>
-          <p class="card-text">{product.gia}</p>
+          <h4 class="card-title">Tên: {product.ten_san_pham}</h4>
+          <p class="card-text">Giá: {product.gia} VNĐ</p>
         </div>
+        
       </div>
       ))}
 

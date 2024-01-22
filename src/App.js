@@ -43,7 +43,7 @@ function App() {
       </AuthProvider>
 
       <ToastContainer position="top-center" />
-      <Footer />
+     
     </>
   );
 }

@@ -21,7 +21,7 @@ const ThanhToan = ({ cartItems }) => {
       chi_tiet: selectedItems.map(item => ({
         san_pham_id: item.id,
         so_luong: item.quantity,
-        tong_tien: item.gia_cu * item.quantity,
+        tong_tien: item.gia * item.quantity,
         size_id: 2,  // Replace with the actual size_id
       })),
     };

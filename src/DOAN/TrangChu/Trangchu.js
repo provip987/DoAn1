@@ -20,7 +20,7 @@ function Trangchu() {
       <>
       <Banner cartCount={cartItems.reduce((total, item) => total + item.quantity, 0)} />
       <Header addToCart={addToCart} />
-      <Footer/>
+
   
       </>
   );
