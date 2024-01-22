@@ -14,9 +14,9 @@ const GioHang = ({ cartItems, updateCartItem }) => {
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.gia_cu * item.quantity, 0);
   };
-  const handleGhiChuChange = (event) => {
-    setGhiChu(event.target.value);
-  };
+  // const handleGhiChuChange = (event) => {
+  //   setGhiChu(event.target.value);
+  // };
 
   const [isCollapsed, setCollapsed] = useState(false);
 
@@ -46,7 +46,7 @@ const GioHang = ({ cartItems, updateCartItem }) => {
     // Lọc ra các sản phẩm được chọn từ giỏ hàng
     const selectedItemsForPayment = cartItems.filter((item) => item.isSelected);
     // Chuyển hướng đến trang thanh toán và truyền danh sách sản phẩm được chọn
-    navigate('/thanh_toan', { state: { selectedItems: selectedItemsForPayment, ghiChu: ghiChu } });
+    navigate('/thanh_toan', { state: { selectedItems: selectedItemsForPayment } });
   };
 
   return (
@@ -146,7 +146,7 @@ const GioHang = ({ cartItems, updateCartItem }) => {
                         className="form-control"
                         rows="3"
                         placeholder="Nhập ghi chú cho sản phẩm..."
-                      onChange={handleGhiChuChange}
+                      // onChange={handleGhiChuChange}
                       ></textarea>
                     </div>
                     <div>

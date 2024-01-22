@@ -4,11 +4,10 @@ import axios from 'axios';
 import axiosInstance from '../http/axiosInstance';
 import { useCartContext } from '../MyContext/Context';
 import { Link, useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
+
 import { toast } from 'react-toastify';
-=======
-import { useCartContext } from '../MyContext/Context';
->>>>>>> f24eb0cc2ef4d339d87e7978bc37200fbccb2afe
+
+
 const ThanhToan = ({ cartItems }) => {
   const [paymentSuccess, setPaymentSuccess] = useState(null);
   // Lọc ra các sản phẩm được chọn từ giỏ hàng
@@ -18,13 +17,12 @@ const ThanhToan = ({ cartItems }) => {
   const calculateTotalPrice = () => {
     return selectedItems.reduce((total, item) => total + item.gia_cu * item.quantity, 0);
   };
-<<<<<<< HEAD
-  const { setCartItems } = useCartContext();
-  
-=======
 
   const { setCartItems } = useCartContext();
->>>>>>> f24eb0cc2ef4d339d87e7978bc37200fbccb2afe
+  
+
+
+
   const handlePayment = async () => {
     if (selectedItems.length === 0) {
       // Hiển thị thông báo hoặc xử lý nếu không có sản phẩm nào được chọn
