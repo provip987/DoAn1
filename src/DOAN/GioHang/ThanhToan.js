@@ -14,7 +14,7 @@ const ThanhToan = ({ cartItems }) => {
   };
   const handlePayment = async () => {
     const orderData = {
-      khachhang_id: 3,
+      //khachhang_id: 3,
       tong_tien: calculateTotalPrice(),
       trang_thai: 'thanh toán',
       ghi_chu: 'hihi',
@@ -22,7 +22,7 @@ const ThanhToan = ({ cartItems }) => {
         san_pham_id: item.id,
         so_luong: item.quantity,
         tong_tien: item.gia_cu * item.quantity,
-        size_id: 2,  // Replace with the actual size_id
+        size_id: item.selectedSize,  // Replace with the actual size_id
       })),
     };
 
