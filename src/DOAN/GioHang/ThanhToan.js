@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import axiosInstance from '../http/axiosInstance';
 import { Link, useNavigate } from 'react-router-dom';
+import { useCartContext } from '../MyContext/Context';
 const ThanhToan = ({ cartItems }) => {
   const [paymentSuccess, setPaymentSuccess] = useState(null);
   // Lọc ra các sản phẩm được chọn từ giỏ hàng
@@ -12,6 +13,8 @@ const ThanhToan = ({ cartItems }) => {
   const calculateTotalPrice = () => {
     return selectedItems.reduce((total, item) => total + item.gia_cu * item.quantity, 0);
   };
+
+  const { setCartItems } = useCartContext();
   const handlePayment = async () => {
     const orderData = {
       //khachhang_id: 3,
@@ -31,6 +34,7 @@ const ThanhToan = ({ cartItems }) => {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       };
       const response = await axiosInstance.post('http://127.0.0.1:8000/api/dat-hang', orderData, config);
+      setCartItems([]);
       setPaymentSuccess(response.data.success);
       navigate('/');
       // Handle success, maybe redirect or show a success message
