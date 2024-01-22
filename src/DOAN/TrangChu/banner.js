@@ -526,7 +526,7 @@ function Banner({ cartCount }) {
                             <ul class="d-none d-md-block" _ngcontent-ng-cli-universal-c61="">
                                 <li class="active ng-star-inserted" _ngcontent-ng-cli-universal-c61="">
                                     <Link
-                                        class="mat-ripple mat-ripple-unbounded" to="/menu"
+                                        class="mat-ripple mat-ripple-unbounded" to="/"
                                         _ngcontent-ng-cli-universal-c61="" matripple="">THỰC ĐƠN
                                     </Link></li>
                                 <li class="ng-star-inserted" _ngcontent-ng-cli-universal-c61=""><a
@@ -567,11 +567,12 @@ function Banner({ cartCount }) {
                                     </app-shopping-cart>
                                 </li>
 
-                            </ul><a class="hamburger ham-desktop-menu d-none d-md-block"
+                            </ul>
+                            {/* <a class="hamburger ham-desktop-menu d-none d-md-block"
                                 href="javascript:void(0);" _ngcontent-ng-cli-universal-c61=""><span
                                     _ngcontent-ng-cli-universal-c61=""></span><span
                                         _ngcontent-ng-cli-universal-c61=""></span><span
-                                            _ngcontent-ng-cli-universal-c61=""></span></a>
+                                            _ngcontent-ng-cli-universal-c61=""></span></a> */}
                         </div>
                     </section>
                 </header>

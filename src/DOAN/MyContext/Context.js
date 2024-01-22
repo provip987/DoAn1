@@ -32,8 +32,7 @@ export const CartProvider = ({ children }) => {
           : cartItem
       );
     } else {
-      const selectedSizeDetails = item.chi_tiet_san_pham.find((size) => size.size_id === finalSize);
-
+      const selectedSizeDetails = item.chi_tiet_san_pham.find((size) => size.size_id == finalSize);
       updatedCartItems = [
         ...cartItems,
         {
@@ -78,6 +77,7 @@ export const CartProvider = ({ children }) => {
     addToCart,
     updateCartItem,
     calculateTotalPrice,
+    setCartItems,
   };
 
   return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>;

@@ -8,6 +8,7 @@ import { useContext } from 'react';
 // import DiaChiGiaoHang from './DiaChiGiaoHang';
 import DonDatHangYeuThich from './DonHangYeuThich';
 import DonHangDaDat from './DonHangDaDat';
+import DatLaiMatKhau from './DatLaiMatKhau';
 const Dashboard = () => {
   const [activeKey, setActiveKey] = useState('chiTietTaiKhoan');
   const { logout } = useContext(AuthContext);
@@ -19,8 +20,8 @@ const Dashboard = () => {
     switch (activeKey) {
       case 'chiTietTaiKhoan':
         return <ChiTietTaiKhoan />;
-    //   case 'datLaiMatKhau':
-    //     return <DatLaiMatKhau />;
+      case 'datLaiMatKhau':
+        return <DatLaiMatKhau />;
       case 'donHangDaDat':
         return <DonHangDaDat />;
       case 'donDatHangYeuThich':
@@ -38,9 +39,10 @@ const Dashboard = () => {
             <Nav.Item>
               <Nav.Link eventKey="chiTietTaiKhoan">Chi Tiết Tài Khoản</Nav.Link>
             </Nav.Item>
-            {/* <Nav.Item>
+            <Nav.Item>
               <Nav.Link eventKey="datLaiMatKhau">Đặt Lại Mật Khẩu</Nav.Link>
             </Nav.Item>
+            {/* 
             <Nav.Item>
               <Nav.Link eventKey="diaChiGiaoHang">Địa Chỉ Giao Hàng</Nav.Link>
             </Nav.Item>

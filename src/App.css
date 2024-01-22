@@ -450,3 +450,75 @@ transform: translateX(-100%);
 }
 
 body{background-color: #000}.card{border:none}.product{background-color: #eee}.brand{font-size: 13px}.act-price{color:red;font-weight: 700}.dis-price{text-decoration: line-through}.about{font-size: 14px}.color{margin-bottom:10px}label.radio{cursor: pointer}label.radio input{position: absolute;top: 0;left: 0;visibility: hidden;pointer-events: none}label.radio span{padding: 2px 9px;border: 2px solid #ff0000;display: inline-block;color: #ff0000;border-radius: 3px;text-transform: uppercase}label.radio input:checked+span{border-color: #ff0000;background-color: #ff0000;color: #fff}.btn-danger{background-color: #ff0000 !important;border-color: #ff0000 !important}.btn-danger:hover{background-color: #da0606 !important;border-color: #da0606 !important}.btn-danger:focus{box-shadow: none}.cart i{margin-right: 10px}
+
+
+
+/* ThanhToan.css */
+/* App.css */
+
+.thanhtoan-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.selected-items {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.selected-items ul {
+  list-style: none;
+  padding: 0;
+}
+
+.selected-items li {
+  margin-bottom: 8px;
+}
+
+.item-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.item-price {
+  color: #007bff;
+}
+
+.total-price {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.form-control {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.payment-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.payment-button:hover {
+  background-color: #218838;
+}
+
+.payment-message {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.payment-message.success {
+  color: #28a745;
+}
+
+.payment-message.error {
+  color: #dc3545;
+}

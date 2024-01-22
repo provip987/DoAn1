@@ -2,7 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import axiosInstance from '../http/axiosInstance';
+import { useCartContext } from '../MyContext/Context';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const ThanhToan = ({ cartItems }) => {
   const [paymentSuccess, setPaymentSuccess] = useState(null);
   // Lọc ra các sản phẩm được chọn từ giỏ hàng
@@ -12,7 +14,14 @@ const ThanhToan = ({ cartItems }) => {
   const calculateTotalPrice = () => {
     return selectedItems.reduce((total, item) => total + item.gia_cu * item.quantity, 0);
   };
+  const { setCartItems } = useCartContext();
+  
   const handlePayment = async () => {
+    if (selectedItems.length === 0) {
+      // Hiển thị thông báo hoặc xử lý nếu không có sản phẩm nào được chọn
+      toast.error('Không có sản phẩm nào được chọn để thanh toán.');
+      return;
+    }
     const orderData = {
       khachhang_id: 3,
       tong_tien: calculateTotalPrice(),
@@ -21,7 +30,7 @@ const ThanhToan = ({ cartItems }) => {
       chi_tiet: selectedItems.map(item => ({
         san_pham_id: item.id,
         so_luong: item.quantity,
-        tong_tien: item.gia * item.quantity,
+        tong_tien: item.gia_cu * item.quantity,
         size_id: 2,  // Replace with the actual size_id
       })),
     };
@@ -31,11 +40,16 @@ const ThanhToan = ({ cartItems }) => {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       };
       const response = await axiosInstance.post('http://127.0.0.1:8000/api/dat-hang', orderData, config);
+      setCartItems([]);
       setPaymentSuccess(response.data.success);
+      
       navigate('/');
+      toast.success('Đặt hàng thành công!');
       // Handle success, maybe redirect or show a success message
     } catch (error) {
+      
       console.error('Error making payment:', error.message);
+      toast.error('Đặt hàng không thành công!');
       // Handle error, show an error message to the user
     }
   };
@@ -49,10 +63,16 @@ const ThanhToan = ({ cartItems }) => {
           <ul>
             {selectedItems.map((item) => (
               <li key={item.id}>
-                {item.ten_san_pham} - {item.gia_cu * item.quantity}đ
+                <h4> {item.ten_san_pham} | Giá {item.gia * item.quantity} đ | Size:{item.selectedSize && (
+                  <strong>{item.selectedSize}</strong>
+                )}</h4>
+
+                <img src={`http://127.0.0.1:8000/${item.hinh_anh}`} alt={item.ten_san_pham} className="w-1" />
+
               </li>
             ))}
           </ul>
+
           <h3>Tổng thanh toán: {calculateTotalPrice()}đ</h3>
         </div>
       ) : (

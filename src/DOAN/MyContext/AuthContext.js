@@ -31,10 +31,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Hàm để "đăng xuất" người dùng
-  const logout = () => {
+  const logout = (message = false) => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    toast.success("Đăng xuất thành công!"); 
+    if(!message) {
+      toast.success("Đăng xuất thành công!"); 
+    } else {
+      toast.success("Đổi mật khẩu thành công!"); 
+    }
+    
     navigate('/login');
   };
 

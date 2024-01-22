@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../MyContext/AuthContext';
 import axios from 'axios';
+import 'moment-timezone';
+import moment from 'moment'; // Import thư viện moment
 import axiosInstance from '../http/axiosInstance';
 const DonHangDaDat = () => {
     const [orders, setOrders] = useState([]);
@@ -42,6 +44,8 @@ const showDetailTable = (orderId) => {
             <th>Tổng tiền</th>
             <th>Ghi chú</th>
             <th>Trạng thái</th>
+            <th>Ngày Đặt</th>
+            
             <th></th>
         </tr>
         </thead>
@@ -52,6 +56,7 @@ const showDetailTable = (orderId) => {
             <td>{order.tong_tien}đ</td>
             <td>{order.ghi_chu}</td>
             <td>{order.trang_thai}</td>
+            <td>{moment(order.created_at).tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD HH:mm:ss')}</td>
             <td><a onClick={() => showDetailTable(order.id)} href="#">Chi tiết</a></td>
         </tr>
         ))}

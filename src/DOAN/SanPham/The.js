@@ -39,7 +39,6 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
   };
 
   const addFavorites =  async (id) => {
-    console.log(id);
       const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       };
@@ -51,6 +50,32 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
         console.error('Có lỗi xảy ra khi lấy thông tin người dùng', error);
       }
   };
+
+  const handleSize = (e) => {
+    const target = e.target;
+    const selectedOption = target.options[target.selectedIndex];
+    const productId = selectedOption.getAttribute('data-product-id');
+    const price = selectedOption.getAttribute('data-price');
+    console.log(productId);
+    setSelectedSize(e.target.value);
+    const modifiedData = sanphams.map(item => {
+      if (item.id == productId) {
+        if(!item.hasOwnProperty('temp')){
+          item.temp = item.gia;
+        }
+
+        if(price > 0) {
+          item.gia = price; // Change the value of "gia" attribute here
+        } else {
+          item.gia = item.temp; 
+        }
+      }
+      return item;
+    });
+    console.log(modifiedData)
+    setSanphams(modifiedData);
+
+  }
 
   return (
     <Swiper
@@ -75,8 +100,8 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
                   <div className="d-flex justify-content-between">
                     <h6>{sanpham.ten_san_pham}</h6>
                     <div className="price">
-                      <p className="text-danger font-weight-bold">{sanpham.gia_cu}đ</p>
-                      <p className="text-secondary font-weight-bold" style={{ textDecoration: 'line-through' }}>{sanpham.gia}đ</p>
+                      <p className="text-danger font-weight-bold">{sanpham.gia}đ</p>
+                      <p className="text-secondary font-weight-bold" style={{ textDecoration: 'line-through' }}>{sanpham.gia_cu}đ</p>
                     </div>
                   </div>
                   <p className="title">{sanpham.mo_ta}</p>
@@ -85,10 +110,10 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
                       <label htmlFor={`sizeDropdown${sanpham.id}`}>Chọn size:</label>
                       <select
   id={`sizeDropdown${sanpham.id}`}
-  onChange={(e) => setSelectedSize(e.target.value)}
+  onChange={(e) => handleSize(e)}
 >
   {sanpham.chi_tiet_san_pham.map((detail, detailIndex) => (
-    <option key={detailIndex} value={detail.size_id}>
+    <option key={detailIndex} value={detail.size_id} data-product-id={detail.san_pham_id} data-price={detail.gia}>
       {detail.size_id}
     </option>
   ))}
@@ -97,9 +122,9 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
                   )}
                   <div className="d-flex justify-content-between">
                     <button className="update"><Link to={`/tuy_chinh/${sanpham.id}`}>Tùy chỉnh</Link></button>
-                    <button className="add" onClick={() => handleAddToCart(sanpham)}>
+                    {(sanpham.chi_tiet_san_pham).length != 0 && (<button className="add" onClick={() => handleAddToCart(sanpham)} >
     Thêm
-  </button>
+  </button>)}
                     <FontAwesomeIcon
                       onClick={() => addFavorites(sanpham.id)}
                       icon={faHeart}
