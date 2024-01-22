@@ -13,6 +13,7 @@ const ThanhToan = ({ cartItems }) => {
   // Lọc ra các sản phẩm được chọn từ giỏ hàng
   const selectedItems = cartItems.filter((item) => item.isSelected);
   const navigate = useNavigate();
+  const [ghiChu, setGhiChu] = useState('');
   // Tính tổng giá trị đơn hàng của các sản phẩm được chọn
   const calculateTotalPrice = () => {
     return selectedItems.reduce((total, item) => total + item.gia_cu * item.quantity, 0);
@@ -29,16 +30,17 @@ const ThanhToan = ({ cartItems }) => {
       toast.error('Không có sản phẩm nào được chọn để thanh toán.');
       return;
     }
+    const sanitizedGhiChu = ghiChu ? ghiChu.replace(/\n/g, '') : 'không có';
     const orderData = {
-      khachhang_id: 3,
+     
       tong_tien: calculateTotalPrice(),
       trang_thai: 'thanh toán',
-      ghi_chu: 'hihi',
+      ghi_chu: sanitizedGhiChu,
       chi_tiet: selectedItems.map(item => ({
         san_pham_id: item.id,
         so_luong: item.quantity,
         tong_tien: item.gia_cu * item.quantity,
-        size_id: 2,  // Replace with the actual size_id
+        size_id: item.selectedSize,
       })),
     };
 
@@ -79,6 +81,17 @@ const ThanhToan = ({ cartItems }) => {
               </li>
             ))}
           </ul>
+          <div>
+            <label htmlFor="ghiChu">Ghi chú:</label>
+            <textarea
+              id="ghiChu"
+              className="form-control"
+              rows="3"
+              placeholder="Nhập ghi chú cho đơn hàng..."
+              value={ghiChu}
+              onChange={(e) => setGhiChu(e.target.value)}
+            ></textarea>
+          </div>
 
           <h3>Tổng thanh toán: {calculateTotalPrice()}đ</h3>
         </div>

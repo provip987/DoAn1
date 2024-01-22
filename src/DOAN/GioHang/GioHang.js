@@ -14,10 +14,6 @@ const GioHang = ({ cartItems, updateCartItem }) => {
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.gia_cu * item.quantity, 0);
   };
-  // const handleGhiChuChange = (event) => {
-  //   setGhiChu(event.target.value);
-  // };
-
   const [isCollapsed, setCollapsed] = useState(false);
 
   const handleCollapseToggle = () => {
@@ -142,17 +138,13 @@ const GioHang = ({ cartItems, updateCartItem }) => {
                       </div>
                     ))}
                     <div>
-                      <textarea
-                        className="form-control"
-                        rows="3"
-                        placeholder="Nhập ghi chú cho sản phẩm..."
-                      // onChange={handleGhiChuChange}
-                      ></textarea>
+                      <h4>Tổng giá trị đơn hàng: {calculateTotalPrice()}đ</h4>
                     </div>
-                    <div>
-                      <h4>Tổng thanh toán: {calculateTotalPrice()}đ</h4>
-                    </div>
+          
+                
+                 
                   </div>
+
                 )}
               </div>
             </div>
@@ -180,7 +172,6 @@ const GioHang = ({ cartItems, updateCartItem }) => {
                     <span><strong>{calculateTotalPrice()}đ</strong></span>
                   </li>
                 </ul>
-
                 <button type="button" className="btn btn-primary btn-lg btn-block" onClick={handleGoToThanhToan}>
                   Thanh toán
                 </button>
