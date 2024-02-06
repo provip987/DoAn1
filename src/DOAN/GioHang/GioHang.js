@@ -2,28 +2,33 @@ import '../../App.css';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { collapse } from '../../bootstrap-5.2.3/css/bootstrap-grid.min.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useCartContext } from '../MyContext/Context'; // Import the CartProvider here
+
 
 const GioHang = ({ cartItems, updateCartItem }) => {
+  const { setCartItems } = useCartContext();
   const [selectedItems, setSelectedItems] = useState([]);
   const navigate = useNavigate();
+  const [isCollapsed, setCollapsed] = useState(false);
 
+  const handleRemoveItem = (itemId, sizeId) => {
+    const updatedCartItems = cartItems.filter(
+      (item) => !(item.id === itemId && item.selectedSize === sizeId)
+    );
+    setCartItems(updatedCartItems);
+  };
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.gia_cu * item.quantity, 0);
   };
-  const [isCollapsed, setCollapsed] = useState(false);
+  
 
   const handleCollapseToggle = () => {
     setCollapsed(!isCollapsed);
   };
-  const handleQuantityChange = (itemId, sizeId, newQuantity) => {
-    console.log("Calling updateCartItem:", itemId, sizeId, newQuantity);
-    updateCartItem(itemId, sizeId, newQuantity);
-  };
-
+  
   const handleSelectToggle = (itemId) => {
     setSelectedItems((prevItems) =>
       prevItems.map((item) => {
@@ -36,13 +41,29 @@ const GioHang = ({ cartItems, updateCartItem }) => {
       }
     );
   };
-
+  const handleQuantityChange = (itemId, sizeId, newQuantity) => {
+    if (newQuantity > 0) {
+      // Update the quantity if it's greater than 0
+      console.log("Calling updateCartItem:", itemId, sizeId, newQuantity);
+      updateCartItem(itemId, sizeId, newQuantity);
+    } else {
+      // If newQuantity is 0 or negative, remove the item from the cart
+      const updatedCartItems = cartItems.filter(
+        (item) => !(item.id === itemId && item.selectedSize === sizeId)
+      );
+      setCartItems(updatedCartItems);
+    }
+  };
 
   const handleGoToThanhToan = () => {
     // Lọc ra các sản phẩm được chọn từ giỏ hàng
     const selectedItemsForPayment = cartItems.filter((item) => item.isSelected);
     // Chuyển hướng đến trang thanh toán và truyền danh sách sản phẩm được chọn
     navigate('/thanh_toan', { state: { selectedItems: selectedItemsForPayment } });
+  };
+  const handleResetCart = () => {
+    const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    setCartItems(storedCartItems);
   };
 
   return (
@@ -55,6 +76,7 @@ const GioHang = ({ cartItems, updateCartItem }) => {
             <div className="card mb-4">
               <div className="card-header py-3">
                 <h4> <b>Giỏ hàng của tôi</b></h4>
+                
 
               </div>
 
@@ -62,7 +84,6 @@ const GioHang = ({ cartItems, updateCartItem }) => {
                 {cartItems.length === 0 ? (
 
                   <p>GIỎ HÀNG CỦA BẠN ĐANG TRỐNG. HÃY ĐẶT MÓN NGAY!</p>
-
 
                 ) : (
                   <div>
@@ -90,7 +111,7 @@ const GioHang = ({ cartItems, updateCartItem }) => {
                           <div className={`collapse ${isCollapsed ? 'show' : ''}`} id="collapseExample">
                             <div > {item.mo_ta} </div>
                           </div>
-                          <button type="button" className="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
+                          <button type="button" className="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item" onClick={() => handleRemoveItem(item.id, item.selectedSize)}>
                             <FontAwesomeIcon icon={faTrash} />
                           </button>
                           <button type="button" className="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
@@ -141,8 +162,8 @@ const GioHang = ({ cartItems, updateCartItem }) => {
                       <h4>Tổng giá trị đơn hàng: {calculateTotalPrice()}đ</h4>
                     </div>
           
-                
-                 
+            
+                            
                   </div>
 
                 )}
@@ -162,7 +183,7 @@ const GioHang = ({ cartItems, updateCartItem }) => {
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                     Phí giao hàng
-                    <span>Free</span>
+                    <span>Miễn Phí</span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                     <div>

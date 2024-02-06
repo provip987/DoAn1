@@ -72,6 +72,7 @@ const showDetailTable = (orderId) => {
             <th>STT</th>
             <th>Tên sản phẩm</th>
             <th>Giá</th>
+            <th>Size ID</th>
             <th>Số lượng</th>
             <th>Thành tiền</th>
         </tr>
@@ -82,6 +83,7 @@ const showDetailTable = (orderId) => {
                 <td>{index + 1}</td>
                 <td>{detail.ten_san_pham}</td>
                 <td>{detail.gia}</td>
+                <td>{detail.size_id}</td>
                 <td>{detail.so_luong}</td>
                 <td>{detail.tong_tien}đ</td>
             </tr>

@@ -11,7 +11,7 @@ import { CartProvider } from '../src/DOAN/MyContext/Context';  // Import CartPro
 import { faLongArrowLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TrangGioHang from './DOAN/Trang/TrangGioHang';
-import ChinhSua from './DOAN/SanPham/ChinhSua';
+
 import TuyChinh from './DOAN/SanPham/TuyChinh';
 import TrangTheSanPham from './DOAN/Trang/TrangTheSanPham';
 import TrangThanhToan from './DOAN/Trang/TrangThanhToan';
@@ -21,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './DOAN/QuanLyChiTiet/DanhSach';
 import Dangky from './DOAN/TaiKhoan/Dangky';
 import Dangnhap from './DOAN/TaiKhoan/Dangnhap';
+import TrangKhuyenMai from './DOAN/Trang/TrangKhuyenMai';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             <Route path="/" element={<Trangchu />} />
             <Route path="/gio_hang" element={<TrangGioHang />} />
             <Route path="/tuy_chinh/:id" element={<TrangTheSanPham />} />
-            <Route path="/khuyenmai" element={<Khuyenmailon />} />
+            <Route path="/khuyenmai" element={<TrangKhuyenMai />} />
             <Route path="/thanh_toan" element={<TrangThanhToan />} />
             <Route path='/login' element={< Dangnhap />} />
             <Route path='/dangky' element={<Dangky />} />

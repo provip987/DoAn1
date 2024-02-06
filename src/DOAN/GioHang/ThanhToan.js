@@ -31,10 +31,18 @@ const ThanhToan = ({ cartItems }) => {
       return;
     }
     const sanitizedGhiChu = ghiChu ? ghiChu.replace(/\n/g, '') : 'không có';
+    for (const item of selectedItems) {
+      const updateStockResponse = await axiosInstance.post(`http://127.0.0.1:8000/api/kiem-tra/${item.id}/${item.selectedSize}/${item.quantity}`);
+      
+      if (!updateStockResponse.data.success) {
+        toast.error(updateStockResponse.data.message);
+        return;
+      }
+    }
     const orderData = {
      
       tong_tien: calculateTotalPrice(),
-      trang_thai: 'thanh toán',
+      trang_thai: 'Chờ Xác Nhận',
       ghi_chu: sanitizedGhiChu,
       chi_tiet: selectedItems.map(item => ({
         san_pham_id: item.id,

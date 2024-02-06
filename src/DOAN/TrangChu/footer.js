@@ -248,8 +248,8 @@ function Footer(){
                                     <h2 _ngcontent-ng-cli-universal-c81="">CÔNG TY LIÊN DOANH TNHH KFC VIỆT NAM</h2>
                                     <div _ngcontent-ng-cli-universal-c81="">Số 292 Bà Triệu, P. Lê Đại Hành, Q. Hai Bà
                                         Trưng, TP. Hà Nội.</div>
-                                    <div _ngcontent-ng-cli-universal-c81="">Điện thoại: (028) 38489828</div>
-                                    <div _ngcontent-ng-cli-universal-c81="">Email: lienhe@kfcvietnam.com.vn</div>
+                                    <div _ngcontent-ng-cli-universal-c81="">Điện thoại: 045678910</div>
+                                    <div _ngcontent-ng-cli-universal-c81="">Email: hihi@kfcvietnam.com.vn</div>
                                     <div _ngcontent-ng-cli-universal-c81="">Mã số thuế: 0100773885</div>
                                     <div _ngcontent-ng-cli-universal-c81="">Ngày cấp: 29/10/1998 - Nơi cấp: Cục Thuế
                                         Thành Phố Hà Nội</div>

@@ -522,3 +522,30 @@ body{background-color: #000}.card{border:none}.product{background-color: #eee}.b
 .payment-message.error {
   color: #dc3545;
 }
+
+
+.card{
+  width: 80%;
+}
+a{
+  font-size: 15px;
+}
+/* Thêm vào file CSS hoặc khối mã style của bạn */
+
+.filter {
+  margin-bottom: 10px; /* Thêm một số margin để tạo khoảng cách */
+}
+
+.filter button {
+  font-size: 12px; /* Điều chỉnh kích thước font theo cần thiết */
+  padding: 8px 12px; /* Thêm padding để trang trí hình ảnh tốt hơn */
+  background-color: #4caf50; /* Thêm màu nền */
+  color: #fff; /* Đặt màu văn bản là màu trắng */
+  border: none; /* Loại bỏ đường viền */
+  border-radius: 4px; /* Thêm border-radius để làm góc bo cho nút */
+  cursor: pointer;
+}
+
+.filter button:hover {
+  background-color: #45a049; /* Thay đổi màu nền khi di chuột qua */
+}

@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import DonDatHangYeuThich from './DonHangYeuThich';
 import DonHangDaDat from './DonHangDaDat';
 import DatLaiMatKhau from './DatLaiMatKhau';
+import Banner from '../TrangChu/banner';
 const Dashboard = () => {
   const [activeKey, setActiveKey] = useState('chiTietTaiKhoan');
   const { logout } = useContext(AuthContext);
@@ -32,6 +33,8 @@ const Dashboard = () => {
   };
 
   return (
+<>
+<Banner/>
     <Container fluid>
       <Row>
         <Col md={3} className="sidebar">
@@ -64,6 +67,7 @@ const Dashboard = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

@@ -12,7 +12,9 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
   const [sanphams, setSanphams] = useState([]);
   const [selectedSize, setSelectedSize] = useState(null);
   const location = useLocation();
-    useEffect(() => {
+  const [sortByPrice, setSortByPrice] = useState(null);
+
+  useEffect(() => {
     // Chỉ gọi API và hiển thị sản phẩm nếu đường dẫn là trang chủ
     if (location.pathname === '/') {
       axios
@@ -37,18 +39,21 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
   const handleAddToCart = (sanpham) => {
     addToCart(sanpham, selectedSize);
   };
+  const handleSortChange = () => {
+    setSortByPrice((prevSort) => (prevSort === 'asc' ? 'desc' : 'asc'));
+  };
 
-  const addFavorites =  async (id) => {
-      const config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      };
+  const addFavorites = async (id) => {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    };
 
-      try {
-        const response = await axios.post('http://127.0.0.1:8000/api/add-favorite-product', {product_id: id}, config);
-        
-      } catch (error) {
-        console.error('Có lỗi xảy ra khi lấy thông tin người dùng', error);
-      }
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/add-favorite-product', { product_id: id }, config);
+
+    } catch (error) {
+      console.error('Có lỗi xảy ra khi lấy thông tin người dùng', error);
+    }
   };
 
   const handleSize = (e) => {
@@ -60,14 +65,14 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
     setSelectedSize(e.target.value);
     const modifiedData = sanphams.map(item => {
       if (item.id == productId) {
-        if(!item.hasOwnProperty('temp')){
+        if (!item.hasOwnProperty('temp')) {
           item.temp = item.gia;
         }
 
-        if(price > 0) {
+        if (price > 0) {
           item.gia = price; // Change the value of "gia" attribute here
         } else {
-          item.gia = item.temp; 
+          item.gia = item.temp;
         }
       }
       return item;
@@ -78,6 +83,9 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
   }
 
   return (
+
+
+
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       slidesPerView={6}
@@ -87,10 +95,27 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
         prevEl: ".swiper-button-prev",
       }}
     >
+      <div className="filter">
+        
+        <button onClick={handleSortChange}>
+          Sắp xếp theo giá {sortByPrice === 'asc' ? 'cao đến thấp' : 'thấp đến cao'}
+        </button>
+      </div>
       <div className="row">
-        {sanphams &&
-          sanphams.length > 0 &&
-          sanphams.map((sanpham, index) => (
+        {sanphams
+          .sort((a, b) => {
+            const priceA = a.gia;
+            const priceB = b.gia;
+
+            if (sortByPrice === 'asc') {
+              return priceA - priceB;
+            } else if (sortByPrice === 'desc') {
+              return priceB - priceA;
+            }
+
+            return 0;
+          })
+          .map((sanpham, index) => (
             <div key={index} className="col-md-3">
               <div className="card">
                 <div className="pic">
@@ -109,22 +134,22 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
                     <div className="size-dropdown">
                       <label htmlFor={`sizeDropdown${sanpham.id}`}>Chọn size:</label>
                       <select
-  id={`sizeDropdown${sanpham.id}`}
-  onChange={(e) => handleSize(e)}
->
-  {sanpham.chi_tiet_san_pham.map((detail, detailIndex) => (
-    <option key={detailIndex} value={detail.size_id} data-product-id={detail.san_pham_id} data-price={detail.gia}>
-      {detail.size_id}
-    </option>
-  ))}
-</select>
+                        id={`sizeDropdown${sanpham.id}`}
+                        onChange={(e) => handleSize(e)}
+                      >
+                        {sanpham.chi_tiet_san_pham.map((detail, detailIndex) => (
+                          <option key={detailIndex} value={detail.size_id} data-product-id={detail.san_pham_id} data-price={detail.gia}>
+                            {detail.size_id}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   )}
                   <div className="d-flex justify-content-between">
                     <button className="update"><Link to={`/tuy_chinh/${sanpham.id}`}>Tùy chỉnh</Link></button>
                     {(sanpham.chi_tiet_san_pham).length != 0 && (<button className="add" onClick={() => handleAddToCart(sanpham)} >
-    Thêm
-  </button>)}
+                      Thêm
+                    </button>)}
                     <FontAwesomeIcon
                       onClick={() => addFavorites(sanpham.id)}
                       icon={faHeart}

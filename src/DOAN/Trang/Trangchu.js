@@ -5,7 +5,7 @@ import Banner from '../TrangChu/banner';
 import GioHang from '../GioHang/GioHang';
 import { Routes, Route } from 'react-router-dom';
 import TuyChinh from '../SanPham/TuyChinh';
-import ChinhSua from '../SanPham/ChinhSua';
+
 
 import ThanhToan from '../GioHang/ThanhToan';
 import { useCartContext } from '../MyContext/Context';
