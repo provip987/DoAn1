@@ -3,7 +3,7 @@ import { AuthContext } from '../MyContext/AuthContext';
 import axios from 'axios';
 import axiosInstance from '../http/axiosInstance';
 
-const DonDatHangYeuThich = () => {
+const SanPhamYeuThich = () => {
   const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,7 +38,8 @@ const DonDatHangYeuThich = () => {
         <div className="alert alert-danger" role="alert">
           {error}
         </div>
-      ) : products.length === 0 ? (
+      ) : products.length <1 ? (
+        
         <h3>Không có sản phẩm nào trong danh sách yêu thích của bạn.</h3>
       ) : (
         products.map((product, index) => (
@@ -55,4 +56,4 @@ const DonDatHangYeuThich = () => {
   );
 };
 
-export default DonDatHangYeuThich;
+export default SanPhamYeuThich;

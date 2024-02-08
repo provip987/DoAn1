@@ -16,6 +16,32 @@ const Dangky = () => {
 
   const handleDangky = async () => {
     try {
+      // Kiểm tra trường nào trống và hiển thị thông báo lỗi
+      if (ten.trim() === '') {
+        toast.error('Vui lòng nhập tên của bạn.');
+        return;
+      }
+      if (!tenDangNhap) {
+        toast.error('Vui lòng nhập tên đăng nhập.');
+        return;
+      }
+      if (!password) {
+        toast.error('Vui lòng nhập mật khẩu.');
+        return;
+      }
+      if (!email) {
+        toast.error('Vui lòng nhập địa chỉ email.');
+        return;
+      }
+      if (!sdt) {
+        toast.error('Vui lòng nhập số điện thoại.');
+        return;
+      }
+      if (!diaChi) {
+        toast.error('Vui lòng nhập địa chỉ.');
+        return;
+      }
+  
       const response = await axios.post('http://127.0.0.1:8000/api/khach-hang', {
         ten: ten,
         ten_dang_nhap: tenDangNhap,
@@ -25,30 +51,18 @@ const Dangky = () => {
         dia_chi: diaChi,
         quyen_id: 1, // Đặt quyen_id thành 1
       });
-
+  
       // Kiểm tra xem API đã trả về lỗi không
       if (response.data.success === false) {
         // Xử lý thông báo lỗi từ API
-        const errors = response.data.errors;
-        if (errors.ten) {
-          toast.error(errors.ten[0]); // Hiển thị lỗi trường 'ten'
-        }
-        if (errors.ten_dang_nhap) {
-          toast.error(errors.ten_dang_nhap[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
-        }
-        if (errors.password) {
-          toast.error(errors.password[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
-        }
-        if (errors.email) {
-          toast.error(errors.email[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
-        }
-        if (errors.sdt) {
-          toast.error(errors.quyen_id[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
-        }
-        if (errors.quyen_id) {
-          toast.error(errors.sdt[0]); // Hiển thị lỗi trường 'ten_dang_nhap'
-        }
-        // Xử lý lỗi cho các trường dữ liệu khác
+        const errors = response.data.errors || {};
+        let errorMessage = '';
+        Object.values(errors).forEach(errorArray => {
+          errorArray.forEach(error => {
+            errorMessage += `${error}\n`;
+          });
+        });
+        toast.error(errorMessage); // Hiển thị tất cả thông báo lỗi
       } else {
         // Đăng ký thành công, hiển thị thông báo thành công
         toast.success('Đăng ký thành công!');
@@ -56,11 +70,12 @@ const Dangky = () => {
         navigate('/login');
       }
     } catch (error) {
-      
       // Xử lý lỗi từ API
       toast.error('Đăng ký thất bại!');
     }
   };
+  
+
 
   return (
     <div>
@@ -83,7 +98,7 @@ const Dangky = () => {
         <div className="text">Mật khẩu</div>
         <input
           type="password"
-          placeholder="Mật khẩu... *"
+          placeholder="Mật khẩu trên 6 kí tự *"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />

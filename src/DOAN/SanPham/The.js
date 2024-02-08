@@ -7,13 +7,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Hienthi = ({ selectedLoaiId, addToCart }) => {
+const Hienthi = ({ selectedLoaiId, addToCart,handleRemoveFavorite }) => {
   console.log("addToCart in Hienthi:", addToCart);
   const [sanphams, setSanphams] = useState([]);
   const [selectedSize, setSelectedSize] = useState(null);
   const location = useLocation();
   const [sortByPrice, setSortByPrice] = useState(null);
-
+  const [favorites, setFavorites] = useState([]);
+ 
   useEffect(() => {
     // Chỉ gọi API và hiển thị sản phẩm nếu đường dẫn là trang chủ
     if (location.pathname === '/') {
@@ -42,7 +43,20 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
   const handleSortChange = () => {
     setSortByPrice((prevSort) => (prevSort === 'asc' ? 'desc' : 'asc'));
   };
+  const isFavorite = (productId) => {
+    return favorites.includes(productId);
+  };
 
+  const handleAddToFavorites = (productId) => {
+    addFavorites(productId);
+    setFavorites((prevFavorites) => [...prevFavorites, productId]);
+  };
+
+  const handleRemoveFromFavorites = (productId) => {
+    // Xóa khỏi mục yêu thích
+    const updatedFavorites = favorites.filter((id) => id !== productId);
+    setFavorites(updatedFavorites);
+  };
   const addFavorites = async (id) => {
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -70,7 +84,7 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
         }
 
         if (price > 0) {
-          item.gia = price; // Change the value of "gia" attribute here
+          item.gia = price; // Thay đổi giá trị thuộc tính “gia” tại đây
         } else {
           item.gia = item.temp;
         }
@@ -96,7 +110,7 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
       }}
     >
       <div className="filter">
-        
+
         <button onClick={handleSortChange}>
           Sắp xếp theo giá {sortByPrice === 'asc' ? 'cao đến thấp' : 'thấp đến cao'}
         </button>
@@ -151,10 +165,22 @@ const Hienthi = ({ selectedLoaiId, addToCart }) => {
                       Thêm
                     </button>)}
                     <FontAwesomeIcon
-                      onClick={() => addFavorites(sanpham.id)}
+                      onClick={() => {
+                       
+                          handleAddToFavorites(sanpham.id);
+                     
+                      
+                      }}
                       icon={faHeart}
-                      style={{ cursor: 'pointer', fontSize: '20px', color: 'gray-light', margin: '10px 0px 0px 5px' }}
+                      style={{
+                        cursor: 'pointer',
+                        fontSize: '20px',
+                        color: isFavorite(sanpham.id) ? 'red' : 'black',
+                        margin: '10px 0px 0px 5px'
+                      }}
                     />
+
+
                   </div>
                 </div>
               </div>

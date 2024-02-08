@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import { useContext } from 'react';
 // import DatLaiMatKhau from './DatLaiMatKhau';
 // import DiaChiGiaoHang from './DiaChiGiaoHang';
-import DonDatHangYeuThich from './DonHangYeuThich';
+import SanPhamYeuThich from './SanPhamYeuThich';
 import DonHangDaDat from './DonHangDaDat';
 import DatLaiMatKhau from './DatLaiMatKhau';
 import Banner from '../TrangChu/banner';
@@ -26,7 +26,7 @@ const Dashboard = () => {
       case 'donHangDaDat':
         return <DonHangDaDat />;
       case 'donDatHangYeuThich':
-        return <DonDatHangYeuThich />;
+        return <SanPhamYeuThich />;
       default:
         return null;
     }
@@ -56,7 +56,7 @@ const Dashboard = () => {
               <Nav.Link eventKey="donHangDaDat">Đơn Hàng Đã Đặt</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="donDatHangYeuThich">Đơn Đặt Hàng Yêu Thích</Nav.Link>
+              <Nav.Link eventKey="donDatHangYeuThich">Món Yêu Thích</Nav.Link>
             </Nav.Item>
               {/* <Button onClick={getFavoriteProducts} variant="secondary" className="mt-3">Danh sách yêu thích</Button> */}
               <Button onClick={handleLogout} variant="secondary" className="mt-3">Đăng Xuất</Button>

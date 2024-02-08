@@ -14,17 +14,29 @@ const Dangnhap = () => {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
   const handleLogin = async () => {
+    if (tenDangNhap.trim() === '' || password.trim() === '') {
+      toast.error('Vui lòng nhập tên đăng nhập và mật khẩu.');
+      return;
+    }
+  
     try {
+
+
+    
       const response = await axios.post('http://127.0.0.1:8000/api/dang-nhap', {
         ten_dang_nhap: tenDangNhap,
         password: password,
       });
+      
+
 
       // Nếu đăng nhập thành công, hiển thị thông báo nổi thành công
       if (response.status === 200) {
         toast.success('Đăng nhập thành công!');
         login(response.data.access_token); // Cập nhật trạng thái đăng nhập
         navigate('/');
+      }else {
+        toast.error('Đăng nhập thất bại! Vui lòng thử lại sau.');
       };
     } catch (error) {
       // Nếu có lỗi, hiển thị thông báo nổi lỗi
